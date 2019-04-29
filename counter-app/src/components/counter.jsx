@@ -6,6 +6,7 @@ class Counter extends Component {
     imgUrl: "https://picsum.photos/200",
     tags: ["Tag1", "Tag2", "Tag3"]
   };
+
   style = {
     fontWeight: "bold",
     fontSize: 10
@@ -22,9 +23,11 @@ class Counter extends Component {
     );
   }
 
-  handleIncrement() {
+  handleIncrement(product) {
     console.log("handlae increment");
     // this.state.count++; //not working in react like Angular (binding)
+    console.log(this);
+    this.setState({ count: this.state.count + 1 });
   }
 
   render() {
@@ -34,7 +37,10 @@ class Counter extends Component {
           {this.formatCount()}
         </span>
         <button
-          onClick={this.handleIncrement.bind(this)}
+          //   onClick={this.handleIncrement.bind(this)} commented since onclick takes a fucntion ref so we cannot pass parameter
+          onClick={() => {
+            this.handleIncrement();
+          }}
           className="btn btn-secondary btn-sm"
         >
           Increment
